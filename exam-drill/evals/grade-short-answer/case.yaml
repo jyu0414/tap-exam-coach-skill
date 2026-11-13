@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: grade-short-answer
+expected_outcome: |
+  進行表の採点基準と照合し、必須要素ごとに判定して部分正解とする（偽装先が攻撃対象であること・増幅した応答が攻撃対象に届くことが欠けている）。字数が制限内かを確かめ、自己採点の目安と明記し、模範解答と解説を示して記録を更新する。
+context:
+  scaffold_script: place-files.sh

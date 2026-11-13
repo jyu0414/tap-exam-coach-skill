@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: resume-week-mid-way
+expected_outcome: |
+  progress.md と進行表から W5 問13 から再開すると判断し、まだ割り当てが残っている小項目から日英併記の4択を1問出す。見出しは番号だけ、正解やヒントは出さず、おすすめ印なし。出題前に進行表へ問13の正解を書き、正解位置の目標分布に沿わせる。
+context:
+  scaffold_script: place-files.sh

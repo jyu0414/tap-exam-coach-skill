@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: setup-plan-from-exam-and-date
+expected_outcome: |
+  公式の出題範囲を調べて exam-profile.md・plan.md・coverage.md・progress.md を作り、模試と判断点を含む週割、TODO、第1週の小項目ごとの問題数割り当て（全小項目に最低1問、正解位置の目標分布つき）を示す。不明点は未確認と書く。

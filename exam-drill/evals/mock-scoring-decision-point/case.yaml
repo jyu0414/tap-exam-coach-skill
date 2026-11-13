@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: mock-scoring-decision-point
+expected_outcome: |
+  回答表から総合と分野別の正答率を正しく計算し、合否の目安（目安であることを明記）、所要時間と1問平均、誤答一覧を mock-results.md に出す。判断点の基準を下回るので後ろ倒し案を示し、決定は利用者に委ね、plan.md の週割や受験日は勝手に変えない。
+context:
+  scaffold_script: place-files.sh
