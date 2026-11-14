@@ -65,7 +65,7 @@ flowchart LR
 
 **Claude.ai** — [Releases](../../releases) から `tap-exam-coach-skill.skill` をダウンロードし、設定画面のスキルからアップロードします。
 
-## Claude.ai のプロジェクトで週ごとにスレッドを分けて使う
+## Claude.ai のプロジェクトで週ごとにチャットを分けて使う
 
 試験ごとにプロジェクトを1つ作り、週・模試・お試しテストごとに新しいチャットを立てて進められます。Claude はプロジェクトの知識を書き換えられないので、チャットの終わりに更新版の記録ファイルを渡します。それを知識に入れ替えてから次のチャットを始めます。
 
@@ -98,7 +98,7 @@ tap-exam-coach-skill/
 │   ├── mock-mode.md         模試
 │   ├── review.md            誤答の分類、弱点ノート、想起テスト、再出題
 │   ├── records.md           記録ファイルの書式
-│   └── project-threads.md   Claude.ai のプロジェクトで週ごとにチャットを分ける進め方
+│   └── project-chats.md   Claude.ai のプロジェクトで週ごとにチャットを分ける進め方
 ├── templates/               記録ファイルのひな形
 └── evals/                   テストケース（`claude plugin eval` で実行できる）
 ```
