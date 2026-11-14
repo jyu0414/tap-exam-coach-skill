@@ -24,7 +24,7 @@ description: 資格試験の対策スキル。試験名と受験日から公式�
 | 「今受けたら受かりそう？」「お試し」「サクッと実力を見たい」 | お試しテスト（いつでも、20問ほど） | `references/quick-check.md` |
 | 「模試をやりたい」、計画上の模試週 | 模試モード | `references/mock-mode.md` |
 | 週末、誤答の整理、想起テスト、弱点補強週 | 振り返り | `references/review.md` |
-| Claude.ai のプロジェクトで使う、チャットの始め・終わり | 知識のファイルを読み、終わりに更新版を渡す | `references/project-chats.md` |
+| Claude.ai のプロジェクトで使う、「次の週へ」「第N週を始めて」 | 新しいプロジェクトなら週ごとのスレッド（`第N週 〈範囲〉を学習する`）を作り、終わったら結果と「次の週へ」ボタンをメインに出す。従来のプロジェクトなら知識のファイルを受け渡す | `references/project-chats.md` |
 
 出題する前には必ず `references/question-rules.md` と `references/formats.md` を読む。問題の質・回答UI・形式ごとの出し方はそこにまとまっている。
 
