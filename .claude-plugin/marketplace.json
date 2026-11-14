@@ -7,7 +7,7 @@
       "name": "tap-exam-coach-skill",
       "source": "./tap-exam-coach-skill",
       "description": "資格試験の対策: 公式の出題形式を調べて計画を作り、本番形式で1問ずつ出題・解説。お試しテスト・模試・弱点管理 / Certification exam prep in the real exam's format",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "education",
       "tags": ["exam", "certification", "study", "quiz", "cissp", "aws", "ipa"]
     }

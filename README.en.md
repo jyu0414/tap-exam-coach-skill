@@ -67,6 +67,26 @@ Long essays and hands-on labs are out of scope. If an exam has such sections, th
 
 The skill's instructions are written in Japanese, but it works in English too.
 
+## Using it in a Claude.ai project, one chat per week
+
+Create one project per exam, then start a new chat for each week, mock exam or quick check. Claude can't edit a project's knowledge, so at the end of each chat it hands you updated record files. Swap them into the project knowledge, then start the next chat.
+
+```mermaid
+flowchart LR
+    P["Project for your exam<br>knowledge: progress.md + 5 files"] --> W0["Chat W0<br>setup"]
+    W0 -->|files and<br>instructions text| U["You add them to knowledge"]
+    U --> W1["Chat W1<br>questions and review"]
+    W1 -->|updated files| U2["You swap them in"]
+    U2 --> W2["Chat W2 …"]
+```
+
+1. Create a project on Claude.ai, with file creation (code execution) and this skill turned on
+2. In the first chat, say "I want to pass X. Make a plan."
+3. Add the six files it gives you to the project knowledge, and paste the text it gives you into the project instructions
+4. Start a new chat and say "Start W1". At the end of each week, swap in the files it gives you and start the next week in a new chat
+
+If you stop partway through a week, go back to the same chat and say "Continue".
+
 ## Layout
 
 ```
@@ -79,7 +99,8 @@ tap-exam-coach-skill/
 │   ├── quick-check.md       Quick check
 │   ├── mock-mode.md         Mock exam
 │   ├── review.md            Mistake types, weak-point log, recall tests, re-drills
-│   └── records.md           Record file formats
+│   ├── records.md           Record file formats
+│   └── project-threads.md   One chat per week in a Claude.ai project
 ├── templates/               Templates for the record files
 └── evals/                   Test cases (runnable with `claude plugin eval`)
 ```
