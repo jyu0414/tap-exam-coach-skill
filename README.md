@@ -23,7 +23,11 @@
 
 ## インストール
 
-- **Claude Code**: `exam-drill/` を `~/.claude/skills/exam-drill/`（全プロジェクト）またはプロジェクトの `.claude/skills/exam-drill/` に置く
+- **Claude Code（プラグインとして）**: セッション内で次を実行する（Claude Code 2.1.275 以降）
+  ```
+  /plugin install exam-drill --marketplace jyu0414/exam-drill
+  ```
+- **Claude Code（手動）**: `exam-drill/` を `~/.claude/skills/exam-drill/`（全プロジェクト）またはプロジェクトの `.claude/skills/exam-drill/` に置く
 - **Claude.ai**: [Releases](../../releases) の `exam-drill.skill` を設定画面のスキルからアップロードする
 
 ## 構成

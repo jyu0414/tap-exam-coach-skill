@@ -25,7 +25,11 @@ The skill works in Japanese and English. For example:
 
 ## Installation
 
-- **Claude Code**: put `exam-drill/` in `~/.claude/skills/exam-drill/` (all projects) or in your project's `.claude/skills/exam-drill/`.
+- **Claude Code (as a plugin)**: run this in a session (Claude Code 2.1.275 or later):
+  ```
+  /plugin install exam-drill --marketplace jyu0414/exam-drill
+  ```
+- **Claude Code (manual)**: put `exam-drill/` in `~/.claude/skills/exam-drill/` (all projects) or in your project's `.claude/skills/exam-drill/`.
 - **Claude.ai**: download `exam-drill.skill` from [Releases](../../releases) and upload it under Skills in Settings.
 
 ## Layout
