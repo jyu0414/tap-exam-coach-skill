@@ -1,5 +1,7 @@
 .DS_Store
 exam-drill-workspace/
+*-workspace/
 dist/
 /exam-drill-data/
+/exam-coach-data/
 exam-drill-skill-design.md

@@ -1,52 +1,89 @@
-# exam-drill
+# Tap Exam Coach — a Claude skill for certification exams
 
 [日本語](README.md) | English
 
-A Claude skill for certification exam prep. Tell it the exam and your test date, and it looks up the official outline and the real exam's question format, builds a week-by-week study plan, and drills you one question at a time in the same format as the real exam, with an explanation after each answer.
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-D97757)](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Features
+**Just tell it the exam and your test date.** It looks up the official outline and the real exam's question format, builds a study plan, and drills you one question at a time in that same format. **Tap an answer** on your phone and the explanation comes right back. Works for any certification: CISSP, AWS, Japan's IPA exams and more.
 
-- **Setup**: researches the official outline, domain weights and the real question format from official sources: number of choices and their labels, multi-select, short answer, diagrams, and what the exam screen and the result report show. It then builds a weekly plan with a decision point, a to-do list and a per-subtopic question allocation.
-- **Study mode**: asks one question at a time, covering every subtopic, and explains each answer. Multiple-choice questions are answered by tapping (AskUserQuestion in Claude Code); short-answer questions are typed.
-- **Quick check**: about 20 questions, any time, to see whether you'd pass today. No plan needed.
-- **Mock exam**: real question count, domain mix and time limit, scored together at the end. At the decision point it suggests whether to move the test date; you decide.
-- **Review**: sorts wrong answers into three types, keeps a weak-point log, and brings them back through recall tests and re-drills.
+![Tap an answer, then read the explanation](docs/hero-en.svg)
 
-Progress is saved as Markdown in `exam-drill-data/<exam>/`, so you can pick up where you left off even after the conversation ends.
+## What it does
 
-## Example prompts
+```mermaid
+flowchart LR
+    A["Tell it the exam<br>and test date"] --> B["Checks official sources for<br>scope and question format"]
+    B --> C["Weekly plan and<br>questions per subtopic"]
+    C --> D["Study mode<br>one question at a time"]
+    D --> E["Weekly review<br>recall tests, weak-point log"]
+    E --> D
+    D --> F["Mock exam<br>(decision point)"]
+    F -->|on track| G["Weak spots → mocks → exam day"]
+    F -->|below target| H["Options to move the date<br>you decide"]
+    Q["Quick check<br>20 questions, any time"] -.-> D
+```
 
-The skill works in Japanese and English. For example:
+| Say this | What happens | Time |
+|---|---|---|
+| "I want to pass X. Make a plan." | Checks official sources, then builds a weekly plan, a to-do list and the first week's allocation | ~5 min |
+| "Give me questions" / "Continue" | One question at a time in the real format, with an explanation after each answer. Picks up where you left off | 1–2 min per question |
+| "Could I pass if I took it today?" | **Quick check**: 20 questions across all domains, scored at the end as on track / borderline / needs work | 15–30 min |
+| "I want a mock exam" | Real question count, domain mix and time limit. Scores by domain and checks your pacing | Same as the real exam |
 
-- "I want to pass CISSP in January. Make me a study plan."
-- "Continue this week's CISSP questions."
-- "Could I pass AWS SAA if I took it today? Give me a quick check."
-- "I want to take a mock exam."
+## How it differs from a question bank
+
+- **Same format as the real exam.** Choice labels (A–D or ア–エ), 5-choice, "choose two", true/false combinations, short answers, and network diagrams or logs to read, all matched to what the real exam uses.
+- **No hints.** Headings are just "Q3/25". Correct answers are spread evenly across positions, and the right option is never the only long or explained one.
+- **Full coverage.** Each week starts by assigning questions to every subtopic, at least one each.
+- **Useful explanations.** Why the answer is right, why each other option falls short, what the exam is really testing, and how to tell similar terms apart.
+- **Follows up on mistakes.** Wrong answers are tagged (knowledge gap / misread / wrong perspective) and re-tested in the following week's recall test.
+- **Resumes across conversations.** Progress is saved as Markdown in `exam-coach-data/<exam>/`.
+
+## Supported question formats
+
+| Format | How you answer |
+|---|---|
+| Single choice (up to 4 options) | Tap |
+| Single choice (5+ options) | Type the number |
+| Multiple response ("choose two") | Tap (multi-select) |
+| True/false combinations | Tap |
+| Short answer (term, number, length-limited) | Type it; graded point by point |
+| With diagrams (network maps, logs, tables) | Read the figure, then answer in one of the formats above |
+
+Long essays and hands-on labs are out of scope. If an exam has such sections, the skill says so when it builds your plan.
 
 ## Installation
 
-- **Claude Code (as a plugin)**: run this in a session (Claude Code 2.1.275 or later):
-  ```
-  /plugin install exam-drill --marketplace jyu0414/exam-drill
-  ```
-- **Claude Code (manual)**: put `exam-drill/` in `~/.claude/skills/exam-drill/` (all projects) or in your project's `.claude/skills/exam-drill/`.
-- **Claude.ai**: download `exam-drill.skill` from [Releases](../../releases) and upload it under Skills in Settings.
+**Claude Code (plugin)**: run this in a session (Claude Code 2.1.275 or later):
+
+```
+/plugin install tap-exam-coach-skill --marketplace jyu0414/tap-exam-coach-skill
+```
+
+**Claude Code (manual)**: put the `tap-exam-coach-skill/` folder in `~/.claude/skills/` (all projects) or in your project's `.claude/skills/`.
+
+**Claude.ai**: download `tap-exam-coach-skill.skill` from [Releases](../../releases) and upload it under Skills in Settings.
+
+The skill's instructions are written in Japanese, but it works in English too.
 
 ## Layout
 
 ```
-exam-drill/
-├── SKILL.md                 Triggers, overall flow, rules applied every time
+tap-exam-coach-skill/
+├── SKILL.md                 When to use it, overall flow, rules applied every time
 ├── references/
-│   ├── setup.md             Exam and question-format research, plan, allocation
+│   ├── setup.md             Exam and format research, plan, allocation
 │   ├── question-rules.md    Per-question flow, answer UI, question-writing rules, pre-check
-│   ├── formats.md           N-choice, multi-select, combination, short answer, diagrams, long scenarios
+│   ├── formats.md           Single/multi choice, combinations, short answer, diagrams, long scenarios
 │   ├── quick-check.md       Quick check
 │   ├── mock-mode.md         Mock exam
-│   ├── review.md            Wrong-answer types, weak-point log, recall tests, re-drills
+│   ├── review.md            Mistake types, weak-point log, recall tests, re-drills
 │   └── records.md           Record file formats
 ├── templates/               Templates for the record files
 └── evals/                   Test cases (runnable with `claude plugin eval`)
 ```
 
-The skill's instructions are written in Japanese.
+## License
+
+[MIT](LICENSE)
